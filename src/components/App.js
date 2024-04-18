@@ -8,12 +8,17 @@ import { useState } from "react";
 
 function App() {
   const [newTasks, setTasks] = useState(TASKS);
+
   function changeTasks(category) {
+    
     if (category === "All")
       setTasks(TASKS)
     else
-      setTasks(TASKS.filter((task) => task.category === category));
+      setTasks(TASKS.filter((task) => {
+    return task.category === category}));
   }
+
+
   function onTaskFormSubmit({category: category, text: text}) {
     setTasks([...newTasks, {text: text, category: category}]);
   }

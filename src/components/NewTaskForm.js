@@ -5,7 +5,7 @@ function NewTaskForm({onTaskFormSubmit}) {
   const [food, setFood] =useState("")
 
   return (
-    <form className="new-task-form" onSubmit={event =>{event.preventDefault()
+    <form className="new-task-form" onSubmit={e =>{e.preventDefault()
 onTaskFormSubmit({"category": category, "text": food})
     }}>
       <label>
@@ -24,7 +24,7 @@ onTaskFormSubmit({"category": category, "text": food})
           <option>Money</option>
           <option>Misc</option>
 
-          
+
         </select>
       </label>
       <input type="submit" value="Add task" />

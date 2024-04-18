@@ -4,16 +4,26 @@ import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
 
 import { CATEGORIES, TASKS } from "../data";
-console.log("Here's the data you're working with");
-console.log({ CATEGORIES, TASKS });
+import { useState } from "react";
 
 function App() {
+  const [newTasks, setTasks] = useState(TASKS);
+  function changeTasks(category) {
+    if (category === "All")
+      setTasks(TASKS)
+    else
+      setTasks(TASKS.filter((task) => task.category === category));
+  }
+  function onTaskFormSubmit({category: category, text: text}) {
+    setTasks([...newTasks, {text: text, category: category}]);
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
-      <NewTaskForm />
-      <TaskList />
+      <CategoryFilter changeTasks={changeTasks}/>
+      <NewTaskForm onTaskFormSubmit={onTaskFormSubmit}/>
+      <TaskList tasks={newTasks}/>
     </div>
   );
 }
